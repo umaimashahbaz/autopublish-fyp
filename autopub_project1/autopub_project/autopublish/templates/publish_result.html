@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Publish Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+        .success { color: green; font-size: 20px; }
+        .error { color: red; font-size: 20px; }
+    </style>
+</head>
+<body>
+    {% if success %}
+        <p class="success">✅ Successfully published your post!</p>
+        <p><a href="{{ response }}" target="_blank">View Post on WordPress</a></p>
+    {% else %}
+        <p class="error">❌ Failed to publish post.</p>
+        <pre>{{ response }}</pre>
+    {% endif %}
+</body>
+</html>

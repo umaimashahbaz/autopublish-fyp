@@ -14,26 +14,28 @@
 
   <p>
     <a href="{% url 'ask_keyword' %}">➕ Generate new article</a> |
-   <form method="post" action="{% url 'logout' %}" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit" style="background:none;border:none;color:blue;text-decoration:underline;cursor:pointer;padding:0;">
+    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit"
+        style="background:none;border:none;color:blue;text-decoration:underline;cursor:pointer;padding:0;">
         Logout
-    </button>
-</form>
+      </button>
+    </form>
   </p>
 
   <h3>Your published posts</h3>
+
   {% if posts %}
     <ul>
       {% for p in posts %}
         <li>
           <strong>{{ p.title }}</strong>
-          <a href="{% url 'social_choose' p.id %}">📣 Social Posts</a>
-
-          ({{ p.created_at|date:"Y-m-d H:i" }}) –
+          ({{ p.created_at|date:"Y-m-d H:i" }})
+          –
           <a href="{{ p.wp_link }}" target="_blank">View on site</a>
-          {% if p.keyword %} – keyword: {{ p.keyword }}{% endif %}
-          | <a href="{% url 'social_choose' p.id %}">📣 Manage Social</a>
+          {% if p.keyword %}
+            – keyword: {{ p.keyword }}
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
@@ -41,7 +43,5 @@
     <p>No posts yet.</p>
   {% endif %}
 
-
- 
 </body>
 </html>
